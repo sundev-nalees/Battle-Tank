@@ -44,7 +44,7 @@ public class TankController : MonoBehaviour
 
     private void Update()
     {
-        //store player input and makesure the engine audio is running
+        
         movementInputValue = joystick.Vertical;
         turnInputValue = joystick.Horizontal;
 
@@ -54,7 +54,7 @@ public class TankController : MonoBehaviour
 
     private void engineAudio() 
     {
-        //play the correct audio based on the tank movement
+        
         if (Mathf.Abs(movementInputValue) < 0.1f && Mathf.Abs(turnInputValue) < 0.1f)
         {
             if (movementAudio.clip == engineDriving)
@@ -77,14 +77,14 @@ public class TankController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //move and turn the tank
+       
         move();
         turn();
     }
 
     private void move()
     {
-        //move the tank based on the input
+        
         Vector3 movement = transform.forward * movementInputValue * speed * Time.deltaTime;
         
         rigidBody.MovePosition(rigidBody.position + movement); 
@@ -92,7 +92,7 @@ public class TankController : MonoBehaviour
 
     private void turn()
     {
-        //rotation of the tank based on input
+        
         float turn = turnInputValue * turnSpeed * Time.deltaTime;
         Quaternion turnRotation = Quaternion.Euler(0f, turn, 0f);
         rigidBody.MoveRotation(rigidBody.rotation * turnRotation);
