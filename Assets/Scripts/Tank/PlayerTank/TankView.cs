@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TankView : MonoBehaviour
 {
-    public TankController tankController;
-    Joystick joystick;
+    private TankController tankController;
+    
 
 
     private float movementInputValue;
@@ -27,7 +27,7 @@ public class TankView : MonoBehaviour
 
     private void Move()
     {
-        movementInputValue = joystick.Vertical;
+        movementInputValue = Input.GetAxis("Vertical");
         if (movementInputValue != 0)
         {
             tankController.Movement(movementInputValue);
@@ -35,17 +35,14 @@ public class TankView : MonoBehaviour
     }
     private void Turn()
     {
-        turnInputValue = joystick.Horizontal;
+        turnInputValue = Input.GetAxis("Horizontal");
         if (turnInputValue != 0)
         {
             tankController.Rotate(turnInputValue);
         }
     } 
 
-    public void SetJoystick(Joystick _joystick)
-    {
-        joystick = _joystick;
-    }
+    
 
     public Rigidbody GetRigidbody()
     {

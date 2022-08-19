@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class TankModel
 {
-    TankController tankController;
+    private TankController tankController;
 
-    float movementSpeed;
+    private float movementSpeed;
 
-    float turnSpeed;
+    private float turnSpeed;
 
     public TankModel(float movement,float turn)
     {

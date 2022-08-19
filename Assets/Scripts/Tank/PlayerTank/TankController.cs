@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class TankController 
 {
-    TankModel tankModel;
+    private TankModel tankModel;
 
-    TankView tankView;
+    private TankView tankView;
 
-    Rigidbody rigidBody;
-
-
-    float movementSpeed;
-    float turnSpeed;
+    private Rigidbody rigidBody;
 
 
+    private float movementSpeed;
+    private float turnSpeed;
 
-    public TankController(TankModel Model,TankView View,Joystick joystick)
+
+
+    public TankController(TankModel Model,TankView View)
     {
         tankModel = Model;
         tankView = GameObject.Instantiate<TankView>(View);
-        tankView.SetJoystick(joystick);
         rigidBody = tankView.GetRigidbody();
         tankView.SetTankController(this);
         tankModel.SetTankController(this);
