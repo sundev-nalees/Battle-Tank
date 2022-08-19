@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class TankSpawner : MonoBehaviour
 {
-    public TankView tankView;
-    public float movementSpeed;
-    public float turnSpeed;
-    public Joystick joystick;
-    private void Start()
+    [SerializeField] TankView tankView;
+    [SerializeField] float movementSpeed;
+    [SerializeField] float turnSpeed;
+    
+    private void OnEnable()
     {
         CreateTank();
     }
@@ -16,6 +16,6 @@ public class TankSpawner : MonoBehaviour
     void CreateTank()
     {
         TankModel tankModel = new TankModel(movementSpeed, turnSpeed);
-        TankController tankController = new TankController(tankModel, tankView, joystick);
+        TankController tankController = new TankController(tankModel, tankView);
     }
 }
