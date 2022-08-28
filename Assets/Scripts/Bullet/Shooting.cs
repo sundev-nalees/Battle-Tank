@@ -25,7 +25,7 @@ public class Shooting : MonoBehaviour
         chargingSpeed = (bulletObject.maxLaunchForce - bulletObject.minLaunchForce) / bulletObject.maxChargeTime;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         aimSlider.value = bulletObject.minLaunchForce;
@@ -45,7 +45,7 @@ public class Shooting : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 fired = false;
-                currentLaunchForce = bulletObject.maxLaunchForce;
+                currentLaunchForce = bulletObject.minLaunchForce;
             }
             else if (Input.GetKey(KeyCode.Mouse0))
             {
