@@ -19,22 +19,27 @@ public class BulletExplosion : MonoBehaviour
 
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, bulletObject.explosionRadius, tankLayer);
         for(int i = 0; i < colliders.Length; i++)
         {
             Rigidbody rb = colliders[i].GetComponent<Rigidbody>();
-            if(!rb||rb.gameObject==parent||Vector3.Distance(transform.position,rb.transform.position)>2f)
+            if(!rb||Vector3.Distance(transform.position,rb.transform.position)>2f)
             {
                 continue;
             }
-            else if(!doesExpolde)
+            rb.AddExplosionForce(bulletObject.maximumExplosionForce, transform.position, bulletObject.explosionRadius);
+            Explode(rb);
+            /*else if(!doesExpolde)
             {
                 doesExpolde = true;
                 Explode(rb);
-            }
+            }*/
         }
+        shellExplosionParticle.transform.parent = null;
+        shellExplosionParticle.Play();
+        Destroy(shellExplosionParticle.gameObject, shellExplosionParticle.main.duration);
     }
 
     private void Explode(Rigidbody rb)
@@ -44,13 +49,13 @@ public class BulletExplosion : MonoBehaviour
             PlayerTankView playerTankView = rb.gameObject.GetComponent<PlayerTankView>();
             playerTankView.TakeDamage(CalculateDamage(rb.position));
         }
-        /*EnemyTankView enemyTankView = rb.GetComponent<EnemyTankView>();
+        EnemyTankView enemyTankView = rb.GetComponent<EnemyTankView>();
         if (enemyTankView)
         {
           float damage =CalculateDamage(rb.position);
           enemyTankView.TakeDamage(damage);
         }
-        */
+        
         shellExplosionParticle.transform.parent = null;
         shellExplosionParticle.Play();
         Destroy(shellExplosionParticle.gameObject, shellExplosionParticle.main.duration);

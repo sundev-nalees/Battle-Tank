@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: 1
   maxChargeTime: 0.75
-  minLaunchForce: 15
+  minLaunchForce: 10
   maxLaunchForce: 30
   nextFireDelay: 0.5
   maxDamage: 50

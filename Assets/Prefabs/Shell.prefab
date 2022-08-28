@@ -193,7 +193,7 @@ MonoBehaviour:
   tankLayer:
     serializedVersion: 2
     m_Bits: 8
-  shellExplosionParticle: {fileID: 19807510, guid: 89e78efe92dfe5a42837b392cdb0bf9e, type: 3}
+  shellExplosionParticle: {fileID: 4544197896102136410}
 --- !u!1001 &4544197896115910476
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -254,5 +254,10 @@ PrefabInstance:
 --- !u!4 &4544197896116345350 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 486730, guid: 89e78efe92dfe5a42837b392cdb0bf9e, type: 3}
+  m_PrefabInstance: {fileID: 4544197896115910476}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &4544197896102136410 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 19807510, guid: 89e78efe92dfe5a42837b392cdb0bf9e, type: 3}
   m_PrefabInstance: {fileID: 4544197896115910476}
   m_PrefabAsset: {fileID: 0}

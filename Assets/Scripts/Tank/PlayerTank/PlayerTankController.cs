@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Threading.Tasks;
+using System;
 public class PlayerTankController 
 {
     private PlayerTankModel tankModel;
@@ -41,8 +42,25 @@ public class PlayerTankController
         if (currentHealth <= 0 && !isDead)
         {
             isDead = true;
-            tankView.OnDeath();
+            OnDeath();
         }
+    }
+    async private void OnDeath()
+    {
+        tankView.OnDeath();
+        await Task.Delay(TimeSpan.FromSeconds(1f));
+        await DestroyLevel();
+        rigidBody.gameObject.SetActive(false);
+    }
+    async Task DestroyLevel()
+    {
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Level");
+        for (int i = 0; i < gameObjects.Length; i++)
+        {
+            await Task.Delay(TimeSpan.FromSeconds(.2f));
+            gameObjects[i].SetActive(false);
+        }
+        await Task.Yield();
     }
     public PlayerTankModel GetTankModel()
     {
