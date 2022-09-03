@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class EnemyTankView : MonoBehaviour
 {
@@ -10,14 +11,14 @@ public class EnemyTankView : MonoBehaviour
     [SerializeField] private Color fullHealthColor = Color.green;
     [SerializeField] private Color zeroHealthColor = Color.red;
     [SerializeField] private GameObject explosionPrefab;
-    //[SerializeField] private TankState defaultState;
+    [SerializeField] private TankState defaultState;
 
 
     private ParticleSystem explosionEffect;
     private Transform[] wayPoint;
     private EnemyTankController controller;
     private TankScriptableObject tankObject;
-    //private TankState currentState;
+    private TankState currentState;
 
     //public static event Action OnEnemyDeath;
 
@@ -31,8 +32,8 @@ public class EnemyTankView : MonoBehaviour
         controller.SetTankView(this);
         SetColor();
         SetHealthUI(tankObject.maxHealth);
-        //currentState = defaultState;
-        //currentState.OnEnterState();
+        currentState = defaultState;
+        currentState.OnEnterState();
     }
 
     public void TakeDamage(float amount)
@@ -57,13 +58,13 @@ public class EnemyTankView : MonoBehaviour
         Invoke("SetUiInactive", tankObject.healthSliderTimer);
     }
 
-    /*public void ChangeState(TankState newState)
+    public void ChangeState(TankState newState)
     {
         currentState.OnExitState();
         newState.OnEnterState();
         currentState = newState;
 
-    }*/
+    }
     private void SetUiInactive()
     {
         healthSlider.gameObject.SetActive(false);

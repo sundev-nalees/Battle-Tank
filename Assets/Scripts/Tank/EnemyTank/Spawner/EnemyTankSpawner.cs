@@ -4,15 +4,38 @@ using UnityEngine;
 
 public class EnemyTankSpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public EnemyTankView view;
+    public TankScriptableObjectList enemyObjects;
+    public int enemyCount;
+    public Transform[] wayPoint;
+
+
+    private EnemyTankController controller;
+    private int scriptableObjectIndex;
+
+    private void Start()
     {
-        
+        SpawnTank();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void SpawnTank()
     {
-        
+        for(int i = 0,point=0;i<=enemyCount;i++,point++)
+        {
+            if (point == wayPoint.Length)
+            {
+                point = 0;
+            }
+            scriptableObjectIndex = Random.Range(0, enemyObjects.tankList.Length);
+            EnemyTankModel model = new EnemyTankModel(enemyObjects.tankList[scriptableObjectIndex], wayPoint);
+
+            controller = new EnemyTankController(model);
+
+            view = GameObject.Instantiate(view, wayPoint[point].position, wayPoint[point].rotation);
+
+            view.SetComponents(controller, enemyObjects.tankList[scriptableObjectIndex], wayPoint);
+            controller.SetTankView(view);
+        }
     }
+
 }
