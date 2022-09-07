@@ -45,12 +45,24 @@ public class PlayerTankController
             OnDeath();
         }
     }
-    async private void OnDeath()
+    private async void OnDeath()
     {
         tankView.OnDeath();
         await Task.Delay(TimeSpan.FromSeconds(1f));
+        await DestroyAllEnemies();
+        await Task.Delay(TimeSpan.FromSeconds(1f));
         await DestroyLevel();
-        rigidBody.gameObject.SetActive(false);
+        
+    }
+    async Task DestroyAllEnemies()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        for(int i = 0; i < enemies.Length; i++)
+        {
+            EnemyTankView enemyTankView = enemies[i].GetComponent<EnemyTankView>();
+            enemyTankView.TakeDamage(tankObject.maxHealth);
+        }
+        await Task.Yield();
     }
     async Task DestroyLevel()
     {

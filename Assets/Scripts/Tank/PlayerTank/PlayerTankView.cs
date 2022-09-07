@@ -72,7 +72,7 @@ public class PlayerTankView : MonoBehaviour
         healthSlider.gameObject.SetActive(true);
         healthSlider.value = health;
         hSliderFillImage.color = Color.Lerp(zeroHealthColor, fullHealthColor, health / tankObject.maxHealth);
-        //Invoke(nameof(SetUInactive), tankObject.healthSliderTimer);
+        
     }
    
     public void OnDeath()
@@ -80,6 +80,7 @@ public class PlayerTankView : MonoBehaviour
         explosionEffect.gameObject.SetActive(true);
         explosionEffect.gameObject.transform.position = transform.position;
         explosionEffect.Play();
+        GameObject.FindGameObjectWithTag("Player").SetActive(false);
     }
     public Rigidbody GetRigidbody()
     {
