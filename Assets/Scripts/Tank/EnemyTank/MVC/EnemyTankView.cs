@@ -20,7 +20,7 @@ public class EnemyTankView : MonoBehaviour
     private TankScriptableObject tankObject;
     private TankState currentState;
 
-    //public static event Action OnEnemyDeath;
+    
 
     private void Awake()
     {
@@ -72,7 +72,7 @@ public class EnemyTankView : MonoBehaviour
     }
     public void OnDeath()
     {
-        //OnEnemyDeath?.Invoke();
+        
         explosionEffect.gameObject.SetActive(true);
         explosionEffect.gameObject.transform.position = transform.position;
         explosionEffect.Play();
