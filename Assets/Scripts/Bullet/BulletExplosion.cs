@@ -10,11 +10,11 @@ public class BulletExplosion : MonoBehaviour
 
     private BulletScriptableObject bulletObject;
     private GameObject parent;
-    private bool doesExpolde;
+    //private bool doesExpolde;
 
     private void Start()
     {
-        doesExpolde = false;
+        //doesExpolde = false;
         Destroy(gameObject, bulletObject.maxLifeTime);
 
     }

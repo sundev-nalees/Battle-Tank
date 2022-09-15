@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShellService : monoSingletonGeneric<ShellService>
+/*public class ShellService : monoSingletonGeneric<ShellService>
 {
     [SerializeField] ShellView shellPrefab;
     //private ShellServicePool shellServicePool;
@@ -28,5 +28,5 @@ public class ShellService : monoSingletonGeneric<ShellService>
     public void ReturnToPool(ShellController shellController)
     {
         shellServicePool.ReturnItem(shellController);
-    }*/
-}
+    }
+}*/

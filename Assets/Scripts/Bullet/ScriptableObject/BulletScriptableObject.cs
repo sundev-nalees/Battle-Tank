@@ -6,7 +6,7 @@ using UnityEngine;
 public class BulletScriptableObject : ScriptableObject
 {
  
-    public TankColor color;
+    public TankType color;
     public float maxChargeTime;
     public float minLaunchForce;
     public float maxLaunchForce;
