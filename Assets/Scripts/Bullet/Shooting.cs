@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class Shooting : MonoBehaviour
     private float currentLaunchForce;
     bool fired;
 
+    public static event Action OnBulletFired;
     void Start()
     {
         currentLaunchForce = bulletObject.minLaunchForce;
@@ -61,6 +63,7 @@ public class Shooting : MonoBehaviour
     void Fire()
     {
         fired = true;
+        OnBulletFired?.Invoke();
         fireTimer = Time.time + bulletObject.nextFireDelay;
         Rigidbody shellInstance = Instantiate(shell, fireTransform.position, fireTransform.rotation);
         shellInstance.velocity = currentLaunchForce * fireTransform.forward;
