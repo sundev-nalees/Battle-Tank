@@ -1,43 +1,44 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ShellView : MonoBehaviour
+namespace TankGame
 {
-    [SerializeField] private LayerMask tankLayer;
-    [SerializeField] private ParticleSystem shellExplosionParticle;
-    private ShellController shellController;
-
-    private void OnTriggerEnter(Collider other)
+    public class ShellView : MonoBehaviour
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, shellController.GetShellModel.GetBulletObject.explosionRadius, tankLayer);
-        for (int i = 0; i < colliders.Length; i++)
+        [SerializeField] private LayerMask tankLayer;
+        [SerializeField] private ParticleSystem shellExplosionParticle;
+        private ShellController shellController;
+
+        private void OnTriggerEnter(Collider other)
         {
-            Rigidbody rb = colliders[i].gameObject.GetComponent<Rigidbody>();
-            if (rb != null)
+            Collider[] colliders = Physics.OverlapSphere(transform.position, shellController.GetShellModel.GetBulletObject.explosionRadius, tankLayer);
+            for (int i = 0; i < colliders.Length; i++)
             {
-                shellController.Explode(rb);
+                Rigidbody rb = colliders[i].gameObject.GetComponent<Rigidbody>();
+                if (rb != null)
+                {
+                    shellController.Explode(rb);
+                }
             }
+            ExplosionEffect();
         }
-        ExplosionEffect();
-    }
-    
-    public void ExplosionEffect()
-    {
-        ParticleSystem particleSystem = Instantiate(shellExplosionParticle, this.transform).GetComponent<ParticleSystem>();
-        particleSystem.transform.parent = null;
-        particleSystem.Play();
-        ReturnShell(particleSystem);
-    }
-    private void ReturnShell(ParticleSystem particleSystem)
-    {
-        Destroy(particleSystem.gameObject, particleSystem.main.duration);
-        //shellService.Insatnce.ReturnToPool(shellController);
-        gameObject.SetActive(false);
-    }
 
-    public void SetShellController(ShellController _controller)
-    {
-        shellController = _controller;
+        public void ExplosionEffect()
+        {
+            ParticleSystem particleSystem = Instantiate(shellExplosionParticle, this.transform).GetComponent<ParticleSystem>();
+            particleSystem.transform.parent = null;
+            particleSystem.Play();
+            ReturnShell(particleSystem);
+        }
+        private void ReturnShell(ParticleSystem particleSystem)
+        {
+            Destroy(particleSystem.gameObject, particleSystem.main.duration);
+            //shellService.Insatnce.ReturnToPool(shellController);
+            gameObject.SetActive(false);
+        }
+
+        public void SetShellController(ShellController _controller)
+        {
+            shellController = _controller;
+        }
     }
 }

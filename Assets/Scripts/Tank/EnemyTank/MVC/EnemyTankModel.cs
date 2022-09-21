@@ -1,30 +1,33 @@
 using UnityEngine;
-public class EnemyTankModel 
+namespace TankGame
 {
-    private TankScriptableObject tankObject;
-
-    private Transform[] wayPoints;
-
-    EnemyTankController controller;
-
-    public EnemyTankModel(TankScriptableObject tankScriptableObject,Transform[] _targetPoints)
+    public class EnemyTankModel
     {
-        this.tankObject = tankScriptableObject;
-        this.wayPoints = _targetPoints;
-    }
+        private TankScriptableObject tankObject;
 
-    public TankScriptableObject GetTankObjects()
-    {
-        return tankObject;
-    }
-    public void SetTankController(EnemyTankController _controller)
-    {
-        controller = _controller;
-    }
+        private Transform[] wayPoints;
+
+        EnemyTankController controller;
+
+        public EnemyTankModel(TankScriptableObject tankScriptableObject, Transform[] _targetPoints)
+        {
+            this.tankObject = tankScriptableObject;
+            this.wayPoints = _targetPoints;
+        }
+
+        public TankScriptableObject GetTankObjects()
+        {
+            return tankObject;
+        }
+        public void SetTankController(EnemyTankController _controller)
+        {
+            controller = _controller;
+        }
 
 
-    public Transform[] GetWayPoints()
-    {
-        return wayPoints;
+        public Transform[] GetWayPoints()
+        {
+            return wayPoints;
+        }
     }
 }

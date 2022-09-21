@@ -1,24 +1,26 @@
 
-
-public class PlayerTankModel
+namespace TankGame
 {
-    private PlayerTankController tankController;
-
-    private TankScriptableObject tankObject;
-
-    public PlayerTankModel(TankScriptableObject tankScriptableObject)
+    public class PlayerTankModel
     {
-        this.tankObject = tankScriptableObject;
+        private PlayerTankController tankController;
 
-    }
+        private TankScriptableObject tankObject;
 
-    public TankScriptableObject GetTankObject()
-    {
-        return tankObject;
-    }
+        public PlayerTankModel(TankScriptableObject tankScriptableObject)
+        {
+            this.tankObject = tankScriptableObject;
 
-    public void SetTankController(PlayerTankController controller)
-    {
-        tankController = controller;
+        }
+
+        public TankScriptableObject GetTankObject()
+        {
+            return tankObject;
+        }
+
+        public void SetTankController(PlayerTankController controller)
+        {
+            tankController = controller;
+        }
     }
 }

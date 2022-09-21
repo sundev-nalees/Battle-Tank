@@ -3,71 +3,71 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class TankPatrolState : TankState
+namespace TankGame
 {
-    private NavMeshAgent agent;
-    private Transform[] wayPoints;
-    private int wayPointIndex=0;
-    private Transform target;
-    
-    private void OnEnable()
+    public class TankPatrolState : TankState
     {
-        
-        agent = GetComponent<NavMeshAgent>();
-        
-    }
-    public void Start()
-    {
-        
-    }
-    public override void OnEnterState()
-    {
-        base.OnEnterState();
-        wayPoints = tankView.GetWayPoints();
+        private NavMeshAgent agent;
+        private Transform[] wayPoints;
+        private int wayPointIndex = 0;
+        private Transform target;
 
-        Patrol();
-    }
-
-    public override void OnExitState()
-    {
-        base.OnExitState();
-    }
-
-    private void FixedUpdate()
-    {
-        if (agent.remainingDistance < 2f)
+        private void OnEnable()
         {
-            tankView.ChangeState(GetComponent<TankIdleState>());
+
+            agent = GetComponent<NavMeshAgent>();
+
         }
-        else if(agent.remainingDistance<5f&&agent.isStopped==true)
+       
+        public override void OnEnterState()
         {
-            agent.ResetPath();
-            agent.SetDestination(target.position);
+            base.OnEnterState();
+            wayPoints = tankView.GetWayPoints();
+
+            Patrol();
         }
-    }
 
-    public void Patrol()
-    {
-        IterateWayPointIndex();
-        target = wayPoints[wayPointIndex];
-        agent.SetDestination(target.position);
-    }
-
-    void IterateWayPointIndex()
-    {
-        int temp;
-        do
+        public override void OnExitState()
         {
-            
-            temp = Random.Range(0, wayPoints.Length);
-            
-            if (tankView == null)
+            base.OnExitState();
+        }
+
+        private void FixedUpdate()
+        {
+            if (agent.remainingDistance < 2f)
             {
-                Debug.Log("Umbii");
+                tankView.ChangeState(GetComponent<TankIdleState>());
+            }
+            else if (agent.remainingDistance < 5f && agent.isStopped == true)
+            {
+                agent.ResetPath();
+                agent.SetDestination(target.position);
             }
         }
-        while (temp == wayPointIndex);
-        wayPointIndex = temp;
-    }
 
+        public void Patrol()
+        {
+            IterateWayPointIndex();
+            target = wayPoints[wayPointIndex];
+            agent.SetDestination(target.position);
+        }
+
+        void IterateWayPointIndex()
+        {
+            int temp;
+            do
+            {
+
+                temp = Random.Range(0, wayPoints.Length);
+
+                if (tankView == null)
+                {
+                    Debug.Log("Umbii");
+                }
+            }
+            while (temp == wayPointIndex);
+            wayPointIndex = temp;
+        }
+
+    }
 }

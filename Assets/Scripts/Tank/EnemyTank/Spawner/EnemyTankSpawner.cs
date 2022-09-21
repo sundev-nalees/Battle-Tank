@@ -1,41 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyTankSpawner : MonoBehaviour
+namespace TankGame
 {
-    public EnemyTankView view;
-    public TankScriptableObjectList enemyObjects;
-    public int enemyCount;
-    public Transform[] wayPoint;
-
-
-    private EnemyTankController controller;
-    private int scriptableObjectIndex;
-
-    private void Start()
+    public class EnemyTankSpawner : MonoBehaviour
     {
-        SpawnTank();
-    }
+        public EnemyTankView view;
+        public TankScriptableObjectList enemyObjects;
+        public int enemyCount;
+        public Transform[] wayPoint;
 
-    private void SpawnTank()
-    {
-        for(int i = 0,point=0;i<=enemyCount;i++,point++)
+
+        private EnemyTankController controller;
+        private int scriptableObjectIndex;
+
+        private void Start()
         {
-            if (point == wayPoint.Length)
-            {
-                point = 0;
-            }
-            scriptableObjectIndex = Random.Range(0, enemyObjects.tankList.Length);
-            EnemyTankModel model = new EnemyTankModel(enemyObjects.tankList[scriptableObjectIndex], wayPoint);
-
-            controller = new EnemyTankController(model);
-
-            view = GameObject.Instantiate(view, wayPoint[point].position, wayPoint[point].rotation);
-
-            view.SetComponents(controller, enemyObjects.tankList[scriptableObjectIndex], wayPoint);
-            controller.SetTankView(view);
+            SpawnTank();
         }
-    }
 
+        private void SpawnTank()
+        {
+            for (int i = 0, point = 0; i <= enemyCount; i++, point++)
+            {
+                if (point == wayPoint.Length)
+                {
+                    point = 0;
+                }
+                scriptableObjectIndex = Random.Range(0, enemyObjects.tankList.Length);
+                EnemyTankModel model = new EnemyTankModel(enemyObjects.tankList[scriptableObjectIndex], wayPoint);
+
+                controller = new EnemyTankController(model);
+
+                view = GameObject.Instantiate(view, wayPoint[point].position, wayPoint[point].rotation);
+
+                view.SetComponents(controller, enemyObjects.tankList[scriptableObjectIndex], wayPoint);
+                controller.SetTankView(view);
+            }
+        }
+
+    }
 }

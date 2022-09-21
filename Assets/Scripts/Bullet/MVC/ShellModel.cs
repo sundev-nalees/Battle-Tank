@@ -1,21 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public class ShellModel 
+namespace TankGame
 {
-    private BulletScriptableObject bulletObject;
-    private ShellController shellController;
-
-    public ShellModel(BulletScriptableObject _object)
+    public class ShellModel
     {
-        bulletObject = _object;
-    }
+        private BulletScriptableObject bulletObject;
+        private ShellController shellController;
 
-    public BulletScriptableObject GetBulletObject { get { return bulletObject; } }
+        public ShellModel(BulletScriptableObject _object)
+        {
+            bulletObject = _object;
+        }
 
-    public void SetShellController(ShellController _conroller)
-    {
-        shellController = _conroller;
+        public BulletScriptableObject GetBulletObject { get { return bulletObject; } }
+
+        public void SetShellController(ShellController _conroller)
+        {
+            shellController = _conroller;
+        }
     }
 }

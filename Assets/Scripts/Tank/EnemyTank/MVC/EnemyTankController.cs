@@ -1,42 +1,45 @@
-public class EnemyTankController 
+namespace TankGame
 {
-    public EnemyTankModel tankModel;
-    public EnemyTankView tankView;
-
-    private TankScriptableObject tankObject;
-    private float currentHealth;
-    private bool isDead;
-
-
-    public EnemyTankController(EnemyTankModel _tankModel)
+    public class EnemyTankController
     {
-        this.tankModel = _tankModel;
-        tankObject = tankModel.GetTankObjects();
-        currentHealth = tankObject.maxHealth;
-        isDead = false;
-    }
+        public EnemyTankModel tankModel;
+        public EnemyTankView tankView;
 
-    public void TakeDamage(float amount)
-    {
-        currentHealth -= amount;
-        tankView.SetHealthUI(currentHealth);
-        if (currentHealth <= 0 && !isDead)
+        private TankScriptableObject tankObject;
+        private float currentHealth;
+        private bool isDead;
+
+
+        public EnemyTankController(EnemyTankModel _tankModel)
         {
-            isDead = true;
-            OnDeath();
+            this.tankModel = _tankModel;
+            tankObject = tankModel.GetTankObjects();
+            currentHealth = tankObject.maxHealth;
+            isDead = false;
+        }
+
+        public void TakeDamage(float amount)
+        {
+            currentHealth -= amount;
+            tankView.SetHealthUI(currentHealth);
+            if (currentHealth <= 0 && !isDead)
+            {
+                isDead = true;
+                OnDeath();
+
+            }
 
         }
 
-    }
+        private void OnDeath()
+        {
+            tankView.OnDeath();
+            tankView.gameObject.SetActive(false);
+        }
 
-    private void OnDeath()
-    {
-        tankView.OnDeath();
-        tankView.gameObject.SetActive(false);
-    }
-
-    public void SetTankView(EnemyTankView _tankView)
-    {
-        tankView = _tankView;
+        public void SetTankView(EnemyTankView _tankView)
+        {
+            tankView = _tankView;
+        }
     }
 }

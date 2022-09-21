@@ -1,27 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class CameraControl : MonoBehaviour
+namespace TankGame
 {
-    private Transform tankTransform;
-
-
-
-    CinemachineVirtualCamera cvCamera;
-    private void Awake()
+    public class CameraControl : MonoBehaviour
     {
-        cvCamera = GetComponent<CinemachineVirtualCamera>();
+        private Transform tankTransform;
 
-    }
 
-    private void Start()
-    {
-        
-        
-        tankTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        cvCamera.Follow = tankTransform;
-        cvCamera.LookAt = tankTransform;
+
+        CinemachineVirtualCamera cvCamera;
+        private void Awake()
+        {
+            cvCamera = GetComponent<CinemachineVirtualCamera>();
+
+        }
+
+        private void Start()
+        {
+
+
+            tankTransform = GameObject.FindGameObjectWithTag("Player").transform;
+            cvCamera.Follow = tankTransform;
+            cvCamera.LookAt = tankTransform;
+        }
     }
 }

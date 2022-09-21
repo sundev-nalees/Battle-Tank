@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -14,31 +12,25 @@ namespace TankGame
         [SerializeField] private AchievementList achievementList;
 
         private const string defaltText = "Achievement Unlocked : ";
-        private int bulletCount;
+        
 
         private void OnEnable()
         {
-            Shooting.OnBulletFired += UpdateBulletCount;
+            Shooting.OnBulletFired += CheckForAchievement;
             
         }
         private void Start()
         {
             achievementPanel.SetActive(false);
-            bulletCount = 0;
+            
         }
 
-        private void UpdateBulletCount()
-        {
-            Debug.Log("update");
-            bulletCount++;
-            CheckForAchievement();
-        }
-        private void CheckForAchievement()
+        private void CheckForAchievement(int bulletCount)
         {
             AchievementScriptableObject achievementObject = null;
             if (achievementList.List != null)
             {
-                if (bulletCount == 2)
+                if (bulletCount == 10)
                 {
                     Debug.Log("Rookie");
                     achievementObject = UnlockAchievement(AchievementType.Rookie);
@@ -89,7 +81,7 @@ namespace TankGame
 
         private void OnDisable()
         {
-            Shooting.OnBulletFired -= UpdateBulletCount;       
+            Shooting.OnBulletFired -= CheckForAchievement;       
         }
     }
 }

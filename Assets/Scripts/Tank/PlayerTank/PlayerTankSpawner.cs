@@ -1,13 +1,15 @@
 using UnityEngine;
- public class PlayerTankSpawner : MonoBehaviour
- {
-   [SerializeField] private PlayerTankView playerTankView;
-       
-  [SerializeField] TankScriptableObject playerObject;
+namespace TankGame
+{
+    public class PlayerTankSpawner : MonoBehaviour
+    {
+        [SerializeField] private PlayerTankView playerTankView;
 
-        
+        [SerializeField] TankScriptableObject playerObject;
 
-        
+
+
+
 
         private void OnEnable()
         {
@@ -22,4 +24,5 @@ using UnityEngine;
             playerTankView.SetComponents(playerTankController);
             playerTankController.SetTankView(playerTankView);
         }
- }
+    }
+}
