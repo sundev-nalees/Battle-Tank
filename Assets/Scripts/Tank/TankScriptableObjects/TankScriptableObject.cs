@@ -1,5 +1,6 @@
 using UnityEngine;
-
+namespace TankGame
+{
     public enum TankType
     {
         None,
@@ -17,3 +18,4 @@ using UnityEngine;
         public float maxHealth = 100f;
         public float healthSliderTimer = 2f;
     }
+}

@@ -1,30 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class TankIdleState : TankState
+namespace TankGame
 {
-    private float idleTime;
-    private float timeElapsed;
-
-    public override void OnEnterState()
+    public class TankIdleState : TankState
     {
-        base.OnEnterState();
-        idleTime = Random.Range(0, 5);
-    }
+        private float idleTime;
+        private float timeElapsed;
 
-    public override void OnExitState()
-    {
-        base.OnExitState();
-        timeElapsed = 0;
-    }
-
-    private void Update()
-    {
-        timeElapsed += Time.deltaTime;
-        if (timeElapsed > idleTime)
+        public override void OnEnterState()
         {
-            tankView.ChangeState(GetComponent<TankPatrolState>());
+            base.OnEnterState();
+            idleTime = Random.Range(0, 5);
+        }
+
+        public override void OnExitState()
+        {
+            base.OnExitState();
+            timeElapsed = 0;
+        }
+
+        private void Update()
+        {
+            timeElapsed += Time.deltaTime;
+            if (timeElapsed > idleTime)
+            {
+                tankView.ChangeState(GetComponent<TankPatrolState>());
+            }
         }
     }
 }

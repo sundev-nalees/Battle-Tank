@@ -1,25 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class TankChaseState : TankState
+namespace TankGame
 {
-    private Transform target;
-
-    public override void OnEnterState()
+    public class TankChaseState : TankState
     {
-        base.OnEnterState();
-        GetComponent<NavMeshAgent>().SetDestination(target.position);
-    }
+        private Transform target;
 
-    public override void OnExitState()
-    {
-        base.OnExitState();
-    }
+        public override void OnEnterState()
+        {
+            base.OnEnterState();
+            GetComponent<NavMeshAgent>().SetDestination(target.position);
+        }
 
-    public void SetTarget(Transform _target)
-    {
-        target = _target;
+        public override void OnExitState()
+        {
+            base.OnExitState();
+        }
+
+        public void SetTarget(Transform _target)
+        {
+            target = _target;
+        }
     }
 }

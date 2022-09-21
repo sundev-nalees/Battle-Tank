@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TankGame.GlobalService
+namespace TankGame
 {
     public class MonoSingletonGeneric<T>: MonoBehaviour where T: MonoSingletonGeneric<T>
     {

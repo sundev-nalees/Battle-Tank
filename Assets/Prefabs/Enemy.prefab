@@ -5497,6 +5497,7 @@ GameObject:
   - component: {fileID: 8539134215082022344}
   - component: {fileID: 4504234505689418378}
   - component: {fileID: 1209737072}
+  - component: {fileID: 8943195484353728684}
   m_Layer: 3
   m_Name: Enemy
   m_TagString: Enemy
@@ -5584,7 +5585,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 15
   fireTransform: {fileID: 337424212865374027}
-  shell: {fileID: 4544197896236418543, guid: e03409826a43b414d9c1cde4ddce7398, type: 3}
+  shell: {fileID: 4544197896236418537, guid: e03409826a43b414d9c1cde4ddce7398, type: 3}
   timeBtwFire: 1
   bulletObject: {fileID: 11400000, guid: 23108d25c8c8eb34a9cb88d37083ca07, type: 2}
   facePlayerSmoothness: 1
@@ -5663,6 +5664,18 @@ MonoBehaviour:
   tankLayer:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &8943195484353728684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7494984261355286470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ac07208d9e68a54fb4d2581e397cb58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7494984261475488494
 GameObject:
   m_ObjectHideFlags: 0

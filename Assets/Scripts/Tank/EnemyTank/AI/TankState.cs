@@ -1,27 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-
-[RequireComponent(typeof(EnemyTankView))]
-public class TankState : MonoBehaviour
+namespace TankGame
 {
-    protected EnemyTankView tankView;
 
-    private void Awake()
+    [RequireComponent(typeof(EnemyTankView))]
+    public class TankState : MonoBehaviour
     {
-        tankView = GetComponent<EnemyTankView>();
-        
-    }
+        protected EnemyTankView tankView;
 
-    public virtual void OnEnterState()
-    {
-        this.enabled = true;
-    }
+        private void Awake()
+        {
+            tankView = GetComponent<EnemyTankView>();
 
-    public virtual void OnExitState()
-    {
-        this.enabled = false;
-    }
+        }
 
+        public virtual void OnEnterState()
+        {
+            this.enabled = true;
+        }
+
+        public virtual void OnExitState()
+        {
+            this.enabled = false;
+        }
+
+    }
 }
