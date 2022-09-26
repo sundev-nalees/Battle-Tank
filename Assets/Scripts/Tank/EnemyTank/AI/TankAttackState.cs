@@ -6,14 +6,13 @@ namespace TankGame {
     {
         [SerializeField] private float bulletSpeed;
         [SerializeField] private Transform fireTransform;
-        [SerializeField] private BulletExplosion shell;
         [Range(0, 5)]
         [SerializeField] private float timeBtwFire;
         [SerializeField] private BulletScriptableObject bulletObject;
         [SerializeField] private float facePlayerSmoothness;
 
 
-        private BulletServicePool bulletServicePool;
+        
         private NavMeshAgent agent;
         private Vector3 agentVelocity;
         private float timer;
@@ -22,7 +21,7 @@ namespace TankGame {
         private void Awake()
         {
             agent = GetComponent<NavMeshAgent>();
-            bulletServicePool = GetComponent<BulletServicePool>();
+           
         }
         public override void OnEnterState()
         {
@@ -56,12 +55,10 @@ namespace TankGame {
 
         private void Fire()
         {
-            BulletExplosion shellInstance = bulletServicePool.GetBullet(shell, fireTransform);
-            shellInstance.SetComponents(bulletObject,this.gameObject,bulletServicePool);
-            shellInstance.GetComponent<Rigidbody>().velocity = bulletSpeed * fireTransform.forward;
+            Vector3 velocity = bulletObject.minLaunchForce * fireTransform.forward;
+            ShellService.Instance.GetShell(bulletObject, fireTransform, velocity);
         }
         
-
         public void SetTarget(Transform _target)
         {
             target = _target;

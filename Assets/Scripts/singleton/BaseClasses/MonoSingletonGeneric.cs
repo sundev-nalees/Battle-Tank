@@ -6,7 +6,7 @@ namespace TankGame
     {
         private static T instace;
         
-        public static T instance { get { return instace; } }
+        public static T Instance { get { return instace; } }
 
         protected virtual void Awake()
         {

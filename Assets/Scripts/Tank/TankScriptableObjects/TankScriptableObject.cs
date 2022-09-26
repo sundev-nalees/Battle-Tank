@@ -12,6 +12,7 @@ namespace TankGame
     [CreateAssetMenu(fileName = "TankScriptableObject", menuName = "ScriptableObject/TankScriptableObject")]
     public class TankScriptableObject : ScriptableObject
     {
+        public TankType tankType;
         public Color tankColor;
         public float movementSpeed;
         public float turnSpeed;

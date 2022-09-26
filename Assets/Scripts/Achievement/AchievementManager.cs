@@ -5,28 +5,21 @@ namespace TankGame
 {
     public class AchievementManager : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI achievementText;
-        [SerializeField] private TextMeshProUGUI achievementDescription;
-        [SerializeField] private GameObject achievementPanel;
-        [SerializeField] private float uiTimer;
         [SerializeField] private AchievementList achievementList;
+        [SerializeField] private InGameHandler gameHandler;
 
-        private const string defaltText = "Achievement Unlocked : ";
-        
+        private int bulletCount;
 
-        private void OnEnable()
-        {
-            Shooting.OnBulletFired += CheckForAchievement;
-            
-        }
         private void Start()
         {
-            achievementPanel.SetActive(false);
-            
+            EventManager.Instance.OnBulletFired += CheckForAchievement;
         }
+        
+        
 
-        private void CheckForAchievement(int bulletCount)
+        private void CheckForAchievement()
         {
+            bulletCount++;
             AchievementScriptableObject achievementObject = null;
             if (achievementList.List != null)
             {
@@ -35,53 +28,57 @@ namespace TankGame
                     Debug.Log("Rookie");
                     achievementObject = UnlockAchievement(AchievementType.Rookie);
                 }
-                else if (bulletCount == 20)
+                else if (bulletCount == 25)
                 {
                     achievementObject = UnlockAchievement(AchievementType.Proficient);
                 }
-                else if (bulletCount == 30)
+                else if (bulletCount == 50)
                 {
                     achievementObject = UnlockAchievement(AchievementType.Expert);
                 }
 
             }
-            if (achievementObject != null)
+            if (achievementObject != null && gameHandler)
             {
-                ShowAchievementUi(achievementObject);
-            }
+                gameHandler.OnAchievementUnlocked(achievementObject);
+            }           
         }
         private AchievementScriptableObject UnlockAchievement(AchievementType _type)
         {
             AchievementScriptableObject achievementObject = FindAchievementObject(_type);
-            if (achievementObject)
+            if (achievementObject&&!IsUnlocked(achievementObject))
             {
-                achievementObject.isAchieved = true;
+                PlayerPrefs.SetInt(achievementObject.name, (int)AchievementStatus.Unlocked);
                 return achievementObject;
             }
             return null;
         }
 
-        private void ShowAchievementUi(AchievementScriptableObject achievement)
+        private bool IsUnlocked(AchievementScriptableObject achivementObject)
         {
-            achievementText.text = defaltText + achievement.name;
-            achievementDescription.text = achievement.achievementDescription;
-            achievementPanel.SetActive(true);
-            Invoke("DeactivateUi", uiTimer);
+            if (PlayerPrefs.HasKey(achivementObject.name))
+            {
+                if (PlayerPrefs.GetInt(achivementObject.name) == (int)AchievementStatus.Unlocked)
+                {
+                    return true;
+                }
+                return false;
+            }
+            return false;
         }
-
         private AchievementScriptableObject FindAchievementObject(AchievementType _type)
         {
             return achievementList.List.Find(ach => ach.type == _type);
         }
 
-        private void DeactivateUi()
-        {
-            achievementPanel.SetActive(false);
-        }
-
         private void OnDisable()
         {
-            Shooting.OnBulletFired -= CheckForAchievement;       
+            EventManager.Instance.OnBulletFired -= CheckForAchievement;
         }
     }
+}
+public enum AchievementStatus
+{
+    Locked,
+    Unlocked
 }

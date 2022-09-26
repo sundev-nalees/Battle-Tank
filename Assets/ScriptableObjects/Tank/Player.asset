@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aaee138faab9664fa6d7d484008bbb7, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
+  tankType: 1
   tankColor: {r: 0.8396226, g: 0.09029898, b: 0.09029898, a: 0}
   movementSpeed: 12
   turnSpeed: 180

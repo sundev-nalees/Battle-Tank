@@ -24,27 +24,27 @@ namespace TankGame
                 if (!isChasing && !isAttacking)
                 {
                     GetComponent<TankChaseState>().SetTarget(target);
-                    tankView.ChangeState(GetComponent<TankChaseState>());
+                    tankView.ChangeState(StateType.Chase);
                     isChasing = true;
                 }
                 distance = Vector3.Distance(transform.position, target.position);
                 if (distance < attackDistance && !isAttacking)
                 {
                     GetComponent<TankAttackState>().SetTarget(target);
-                    tankView.ChangeState(GetComponent<TankAttackState>());
+                    tankView.ChangeState(StateType.Attack);
                     isAttacking = true;
                     isChasing = false;
                 }
             }
             if (distance > attackDistance && isAttacking)
             {
-                tankView.ChangeState(GetComponent<TankChaseState>());
+                tankView.ChangeState(StateType.Chase);
                 isAttacking = false;
                 isChasing = true;
             }
             if (target == null && isChasing)
             {
-                tankView.ChangeState(GetComponent<TankPatrolState>());
+                tankView.ChangeState(StateType.Patrol);
                 isChasing = false;
             }
         }

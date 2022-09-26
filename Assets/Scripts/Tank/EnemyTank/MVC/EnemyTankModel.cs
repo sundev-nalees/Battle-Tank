@@ -4,18 +4,14 @@ namespace TankGame
     public class EnemyTankModel
     {
         private TankScriptableObject tankObject;
+        private EnemyTankController controller;
 
-        private Transform[] wayPoints;
-
-        EnemyTankController controller;
-
-        public EnemyTankModel(TankScriptableObject tankScriptableObject, Transform[] _targetPoints)
+        public EnemyTankModel(TankScriptableObject tankScriptableObject)
         {
-            this.tankObject = tankScriptableObject;
-            this.wayPoints = _targetPoints;
+            tankObject = tankScriptableObject;
         }
 
-        public TankScriptableObject GetTankObjects()
+        public TankScriptableObject GetTankObject()
         {
             return tankObject;
         }
@@ -24,10 +20,5 @@ namespace TankGame
             controller = _controller;
         }
 
-
-        public Transform[] GetWayPoints()
-        {
-            return wayPoints;
-        }
     }
 }

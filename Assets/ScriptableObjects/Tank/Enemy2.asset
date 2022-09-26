@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aaee138faab9664fa6d7d484008bbb7, type: 3}
   m_Name: Enemy2
   m_EditorClassIdentifier: 
+  tankType: 3
   tankColor: {r: 0, g: 0, b: 0, a: 0}
   movementSpeed: 20
   turnSpeed: 150
