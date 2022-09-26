@@ -13,7 +13,7 @@ namespace TankGame
         public EnemyTankController(EnemyTankModel _tankModel)
         {
             this.tankModel = _tankModel;
-            tankObject = tankModel.GetTankObjects();
+            tankObject = tankModel.GetTankObject();
             currentHealth = tankObject.maxHealth;
             isDead = false;
         }
@@ -31,15 +31,20 @@ namespace TankGame
 
         }
 
-        private void OnDeath()
+        public void OnDeath()
         {
             tankView.OnDeath();
-            tankView.gameObject.SetActive(false);
+            
         }
 
         public void SetTankView(EnemyTankView _tankView)
         {
             tankView = _tankView;
+        }
+
+        public EnemyTankModel GetEnemyModel()
+        {
+            return tankModel;
         }
     }
 }

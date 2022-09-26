@@ -11,19 +11,12 @@ namespace TankGame
         private Transform[] wayPoints;
         private int wayPointIndex = 0;
         private Transform target;
-
-        private void OnEnable()
-        {
-
-            agent = GetComponent<NavMeshAgent>();
-
-        }
        
         public override void OnEnterState()
         {
             base.OnEnterState();
-            wayPoints = tankView.GetWayPoints();
-
+            agent.GetComponent<NavMeshAgent>();
+            wayPoints = EnemyTankService.Instance.GetPatrolPoints();
             Patrol();
         }
 
@@ -36,7 +29,7 @@ namespace TankGame
         {
             if (agent.remainingDistance < 2f)
             {
-                tankView.ChangeState(GetComponent<TankIdleState>());
+                tankView.ChangeState(StateType.Idle);
             }
             else if (agent.remainingDistance < 5f && agent.isStopped == true)
             {

@@ -10293,8 +10293,8 @@ GameObject:
   - component: {fileID: 7831001026151194597}
   - component: {fileID: 7831001026151194598}
   - component: {fileID: 7831001026151194599}
-  - component: {fileID: 913877444}
-  - component: {fileID: 5315727899575384534}
+  - component: {fileID: 8040524961234647155}
+  - component: {fileID: 8114179504749599808}
   m_Layer: 3
   m_Name: Tank
   m_TagString: Player
@@ -10559,23 +10559,12 @@ MonoBehaviour:
   fullHealthColor: {r: 0, g: 1, b: 0, a: 1}
   zeroHealthColor: {r: 1, g: 0, b: 0, a: 1}
   explosionPrefab: {fileID: 151086, guid: ee49a9a8678ecf8468eb488e1ac8d42b, type: 3}
---- !u!114 &913877444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7831001026151194592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1b706c02e598b145806c3e744112597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 4544197896236418537, guid: e03409826a43b414d9c1cde4ddce7398, type: 3}
+  tankBody:
+  - {fileID: 7831001025032731615}
   aimSlider: {fileID: 529242930}
   fireTransform: {fileID: 1245407085}
   bulletObject: {fileID: 11400000, guid: 23108d25c8c8eb34a9cb88d37083ca07, type: 2}
---- !u!114 &5315727899575384534
+--- !u!114 &8040524961234647155
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10587,6 +10576,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac07208d9e68a54fb4d2581e397cb58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8114179504749599808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7831001026151194592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 787fae97a326fa74aad5a9c6973909a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shellPrefab: {fileID: 6445983898669887200, guid: e03409826a43b414d9c1cde4ddce7398, type: 3}
 --- !u!1 &7831001026368424799
 GameObject:
   m_ObjectHideFlags: 0

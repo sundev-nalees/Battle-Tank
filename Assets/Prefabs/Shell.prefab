@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4544197896236418543}
   - component: {fileID: 4544197896236418542}
   - component: {fileID: 4544197896236418536}
-  - component: {fileID: 4544197896236418537}
+  - component: {fileID: 6445983898669887200}
   m_Layer: 0
   m_Name: Shell
   m_TagString: Untagged
@@ -178,7 +178,7 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &4544197896236418537
+--- !u!114 &6445983898669887200
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -187,7 +187,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4544197896236319572}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42882133bdd177148a1ffb112e03032b, type: 3}
+  m_Script: {fileID: 11500000, guid: 922647f474276b741bf04e74dfe39759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tankLayer:

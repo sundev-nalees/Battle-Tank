@@ -24,7 +24,7 @@ namespace TankGame
             timeElapsed += Time.deltaTime;
             if (timeElapsed > idleTime)
             {
-                tankView.ChangeState(GetComponent<TankPatrolState>());
+                tankView.ChangeState(StateType.Patrol);
             }
         }
     }

@@ -7,6 +7,6 @@ namespace TankGame
     [CreateAssetMenu(fileName = "TankScriptableObjectList", menuName = "scriptableObject/ScriptableObjectTankList")]
     public class TankScriptableObjectList : ScriptableObject
     {
-        public TankScriptableObject[] tankList;
+        public List<TankScriptableObject> tankList;
     }
 }

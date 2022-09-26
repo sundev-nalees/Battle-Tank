@@ -5498,6 +5498,7 @@ GameObject:
   - component: {fileID: 4504234505689418378}
   - component: {fileID: 1209737072}
   - component: {fileID: 8943195484353728684}
+  - component: {fileID: -3873072877478569246}
   m_Layer: 3
   m_Name: Enemy
   m_TagString: Enemy
@@ -5570,7 +5571,10 @@ MonoBehaviour:
   fullHealthColor: {r: 0, g: 1, b: 0, a: 1}
   zeroHealthColor: {r: 1, g: 0, b: 0, a: 1}
   explosionPrefab: {fileID: 151086, guid: ee49a9a8678ecf8468eb488e1ac8d42b, type: 3}
-  defaultState: {fileID: -7540823055636677675}
+  defaultState: 1
+  tankBody:
+  - {fileID: 7494984262383569913}
+  states: []
 --- !u!114 &-7038146119317170998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5585,7 +5589,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 15
   fireTransform: {fileID: 337424212865374027}
-  shell: {fileID: 4544197896236418537, guid: e03409826a43b414d9c1cde4ddce7398, type: 3}
   timeBtwFire: 1
   bulletObject: {fileID: 11400000, guid: 23108d25c8c8eb34a9cb88d37083ca07, type: 2}
   facePlayerSmoothness: 1
@@ -5676,6 +5679,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac07208d9e68a54fb4d2581e397cb58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-3873072877478569246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7494984261355286470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 787fae97a326fa74aad5a9c6973909a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shellPrefab: {fileID: 6445983898669887200, guid: e03409826a43b414d9c1cde4ddce7398, type: 3}
 --- !u!1 &7494984261475488494
 GameObject:
   m_ObjectHideFlags: 0

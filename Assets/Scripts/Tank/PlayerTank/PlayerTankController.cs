@@ -27,12 +27,20 @@ namespace TankGame
         }
         public void Movement(float movementInputValue)
         {
+            if (!rigidBody)
+            {
+                rigidBody = tankView.GetRigidBody;
+            }
             Vector3 movement = tankView.gameObject.transform.forward * movementInputValue * tankObject.movementSpeed * Time.deltaTime;
 
             rigidBody.MovePosition(rigidBody.position + movement);
         }
         public void Rotate(float turnInputValue)
         {
+            if (!rigidBody)
+            {
+                rigidBody = tankView.GetRigidBody;
+            }
             float turn = turnInputValue * tankObject.turnSpeed * Time.deltaTime;
             Quaternion turnRotation = Quaternion.Euler(0f, turn, 0f);
             rigidBody.MoveRotation(rigidBody.rotation * turnRotation);
@@ -43,55 +51,41 @@ namespace TankGame
             tankView.SetHealthUI(currentHealth);
             if (currentHealth <= 0 && !isDead)
             {
+                EventManager.Instance.InvokeOnGameOver();
                 isDead = true;
                 OnDeath();
             }
         }
-        private async void OnDeath()
+        async private void OnDeath()
         {
-            tankView.OnDeath();
-            await Task.Delay(TimeSpan.FromSeconds(1f));
             await DestroyAllEnemies();
             await Task.Delay(TimeSpan.FromSeconds(1f));
-            await DestroyLevel();
 
         }
-        async Task DestroyAllEnemies()
+        async private Task DestroyAllEnemies()
         {
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            for (int i = 0; i < enemies.Length; i++)
+            List<EnemyTankController> enemies = EnemyTankService.Instance.GetEnemies();
+            for (int i = 0; i < enemies.Count; i++)
             {
-                EnemyTankView enemyTankView = enemies[i].GetComponent<EnemyTankView>();
-                enemyTankView.TakeDamage(tankObject.maxHealth);
+                enemies[i].OnDeath();
             }
             await Task.Yield();
         }
-        async Task DestroyLevel()
+        public void Fire(Vector3 velocity)
         {
-            GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Level");
-            for (int i = 0; i < gameObjects.Length; i++)
-            {
-                await Task.Delay(TimeSpan.FromSeconds(.2f));
-                gameObjects[i].SetActive(false);
-            }
-            await Task.Yield();
+            EventManager.Instance.InvokeOnBulletFired();
+            ShellService.Instance.GetShell(tankView.GetBulletScriptableObject, tankView.GetFireTransform, velocity);
+
         }
         public PlayerTankModel GetTankModel()
         {
             return tankModel;
         }
 
-        public PlayerTankView GetTankView()
+        public void SetPlayerTankView(PlayerTankView _view)
         {
-            return tankView;
+            tankView = _view;
         }
-        public void SetTankView(PlayerTankView view)
-        {
-            tankView = view;
-            rigidBody = tankView.GetRigidbody();
-        }
-
-
-
+        
     }
 }

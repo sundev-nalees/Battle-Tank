@@ -6,6 +6,7 @@ namespace TankGame
     {
         [SerializeField] private LayerMask tankLayer;
         [SerializeField] private ParticleSystem shellExplosionParticle;
+
         private ShellController shellController;
 
         private void OnTriggerEnter(Collider other)
@@ -25,14 +26,24 @@ namespace TankGame
         public void ExplosionEffect()
         {
             ParticleSystem particleSystem = Instantiate(shellExplosionParticle, this.transform).GetComponent<ParticleSystem>();
+            PlayExplosionSound();
             particleSystem.transform.parent = null;
             particleSystem.Play();
             ReturnShell(particleSystem);
         }
+
+        private void PlayExplosionSound()
+        {
+            var instance = AudioManager.Instance;
+            if (instance)
+            {
+                instance.PlaySound(SoundType.ShellExplode);
+            }
+        }
         private void ReturnShell(ParticleSystem particleSystem)
         {
             Destroy(particleSystem.gameObject, particleSystem.main.duration);
-            //shellService.Insatnce.ReturnToPool(shellController);
+            ShellService.Instance.ReturnToPool(shellController);
             gameObject.SetActive(false);
         }
 
